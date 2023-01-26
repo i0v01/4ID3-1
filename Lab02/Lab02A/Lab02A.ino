@@ -18,7 +18,7 @@ void loop() {
     
   //Temp sensor
   Wire.beginTransmission(ADDR);
-  Wire.write(HUM_CMD);
+  Wire.write(TMP_CMD);
   Wire.endTransmission();
   delay(100);
 

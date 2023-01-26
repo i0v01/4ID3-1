@@ -6,7 +6,7 @@
 
 //IIC Addresses for Temperature Sensor
 #define ADDR (byte)(0x40)
-#define HUM_CMD (byte)(0xF5)
+#define TMP_CMD (byte)(0xF3)
 
 //Sample frequency
 #define DELAY_BETWEEN_SAMPLES_MS 5000
