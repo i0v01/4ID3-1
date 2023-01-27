@@ -14,7 +14,7 @@ import paho.mqtt.client as mqtt
 
 #   HTTP Server
 HTTP_IP = 'localhost'
-HTTP_PORT = 9000
+HTTP_PORT = 3000
 
 #   MQTT Connection
 MQTT_IP = 'test.mosquitto.org'
@@ -47,6 +47,7 @@ client.on_connect = on_connect
 client.on_message = on_message
 client.connect(MQTT_IP, MQTT_PORT, 60)
 client.subscribe('Light', 2)
+
 #   Instantiating database connection
 myclient = pymongo.MongoClient(f"{MONGODB_IP}:{MONGODB_PORT}{MONGODB_ROUTE}")
 
@@ -59,8 +60,21 @@ class requestHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.end_headers()
             self.wfile.write(f'{LIGHT}\n')
+        
+        if self.path.endswith('/test'):
+            #content_length = int(self.headers['Content-Length'])
+            #data = self.rfile.read(content_length)
+            self.send_response(200)
+            self.send_header('content-type', "text/html")
+            self.end_headers()       
+            #data = str(data)
+            #firstSplitIndex = data.find('{')
+            #secondSplitIndex = data.rfind('}')
+            #data = data[firstSplitIndex: secondSplitIndex+1]
+            self.wfile.write(f'<html><body><h1>OK\n</h1></body></html>'.encode())
 
     def do_POST(self):
+
         if self.path.endswith('/database'):
             #Reading the data sent from microcontroller and formatting it
             content_length = int(self.headers['Content-Length'])
