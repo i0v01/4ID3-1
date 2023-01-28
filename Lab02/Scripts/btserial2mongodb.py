@@ -20,6 +20,7 @@ try:
     ser = serial.Serial(bluetoothCOM, 9600)
     print("Bluetooth COM opened")
 except:
+    print("Error opening serial port!\nExiting...")
     exit(1)
 
 while True:
