@@ -96,18 +96,24 @@ class requestHandler(BaseHTTPRequestHandler):
             data = data[firstSplitIndex: secondSplitIndex+1]
 
             #Interpreting microcontroller data as JSON
-            jDict = json.loads(data)
-            uiDict = jDict
-            groupName = list(jDict.keys())[0]
-            deviceId = list(jDict[groupName])[0]
-            mydb = myclient[groupName]
-            mycollection = mydb[deviceId]
+            try{
+                jDict = json.loads(data)
+                uiDict = jDict
+                groupName = list(jDict.keys())[0]
+                deviceId = list(jDict[groupName])[0]
+                mydb = myclient[groupName]
+                mycollection = mydb[deviceId]
 
-            #Inserting into database
-            ret = mycollection.insert_one(jDict[groupName][deviceId])
+                #Inserting into database
+                ret = mycollection.insert_one(jDict[groupName][deviceId])
 
-            #Returning data + OK
-            self.wfile.write(f'{data}\nOK\n'.encode())
+                #Returning data + OK
+                self.wfile.write(f'{data}\nOK\n'.encode())
+            }
+            except{
+                print("Could not parse: ", data)
+                self.wfile.write(b'ERR')            
+            }
             
         if self.path.endswith('/mqtt'):
             #Reading the data sent from microcontroller and formatting it
@@ -122,18 +128,24 @@ class requestHandler(BaseHTTPRequestHandler):
             data = data[firstSplitIndex: secondSplitIndex+1]
 
             #Interpreting microcontroller data as JSON
-            jDict = json.loads(data)
-            uiDict = jDict
-            groupName = list(jDict.keys())[0]
-            deviceId = list(jDict[groupName])[0]
+            try{
+                jDict = json.loads(data)
+                uiDict = jDict
+                groupName = list(jDict.keys())[0]
+                deviceId = list(jDict[groupName])[0]
             
-            #Publishing to MQTT
-            for key, val in jDict[groupName][deviceId].items():
-                client.publish(f'{groupName}/{deviceId}/{key}', val.encode("UTF-8"))
+                #Publishing to MQTT
+                for key, val in jDict[groupName][deviceId].items():
+                    client.publish(f'{groupName}/{deviceId}/{key}', val.encode("UTF-8"))
             
-            #Returning data + OK
-            self.wfile.write(f'{data}\n'.encode())
-            self.wfile.write(b'OK\n')
+                #Returning data + OK
+                self.wfile.write(f'{data}\n'.encode())
+                self.wfile.write(b'OK')
+            }
+            except{
+                print("Could not parse: ", data)
+                self.wfile.write(b'ERR')
+            }
 
 
 def main():
