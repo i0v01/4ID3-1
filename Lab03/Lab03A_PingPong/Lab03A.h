@@ -11,20 +11,8 @@
 
 #define TIME_PER_SEND_MS 3000
 
-//Data rate enumerations
-enum eAirDataRate {
-  BAUD300 = 0b000, 
-  BAUD1200 = 0b001,
-  BAUD2400 = 0b010,
-  BAUD4800 = 0b011,
-  BAUD9600 = 0b100,
-  BAUD19200 = 0b101
-};
-
-//Transceiver frequency
-const eAirDataRate AIR_DATA_RATE = BAUD300;
-
-//Creating a transceiver object
+//Transceiver setup
+#define TRANSCEIVER_CHANNEL 42
 EBYTE Transceiver(&Serial2, PIN_M0, PIN_M1, PIN_AX);
 
 //Device details

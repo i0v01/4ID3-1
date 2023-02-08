@@ -17,7 +17,7 @@ void setup() {
   Serial2.begin(9600);
 
   Transceiver.init();
-  //Transceiver.SetAirDataRate(AIR_DATA_RATE);
+  Transceiver.SetChannel(TRANSCEIVER_CHANNEL);
   Transceiver.PrintParameters();
 
 }
