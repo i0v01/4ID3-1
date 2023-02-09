@@ -96,7 +96,7 @@ class requestHandler(BaseHTTPRequestHandler):
             data = data[firstSplitIndex: secondSplitIndex+1]
 
             #Interpreting microcontroller data as JSON
-            try{
+            try:
                 jDict = json.loads(data)
                 uiDict = jDict
                 groupName = list(jDict.keys())[0]
@@ -109,11 +109,11 @@ class requestHandler(BaseHTTPRequestHandler):
 
                 #Returning data + OK
                 self.wfile.write(f'{data}\nOK\n'.encode())
-            }
-            except{
+
+            except:
                 print("Could not parse: ", data)
                 self.wfile.write(b'ERR')            
-            }
+            
             
         if self.path.endswith('/mqtt'):
             #Reading the data sent from microcontroller and formatting it
@@ -128,7 +128,7 @@ class requestHandler(BaseHTTPRequestHandler):
             data = data[firstSplitIndex: secondSplitIndex+1]
 
             #Interpreting microcontroller data as JSON
-            try{
+            try:
                 jDict = json.loads(data)
                 uiDict = jDict
                 groupName = list(jDict.keys())[0]
@@ -141,11 +141,11 @@ class requestHandler(BaseHTTPRequestHandler):
                 #Returning data + OK
                 self.wfile.write(f'{data}\n'.encode())
                 self.wfile.write(b'OK')
-            }
-            except{
+        
+            except:
                 print("Could not parse: ", data)
                 self.wfile.write(b'ERR')
-            }
+            
 
 
 def main():
