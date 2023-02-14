@@ -56,7 +56,7 @@ void loop() {
 
     //Format data as a JSON string
     String sendData = "{ \"" + groupName + "\": { \"" + deviceName + "\": { \"Temp\": \"" 
-        + String(tempC) + "\", \"Luminosity\": \"" + String(lux) + "\" } } }";
+        + String(tempC) + "\", \"Luminosity\": \"" + String(lux) + "\" } } }" + '\n';
       
     Serial.println("Prepared LoRa message: " + sendData);
   
