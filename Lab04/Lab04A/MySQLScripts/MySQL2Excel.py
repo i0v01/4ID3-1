@@ -4,7 +4,7 @@ import json
 
 HOST_IP = "localhost"
 USER = "root"
-PASSWORD = "fireball"
+PASSWORD = "9055259140"
 DB_NAME = "iot"
 TABLE_NAME = "data"
 
