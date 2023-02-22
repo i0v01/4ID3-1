@@ -27,7 +27,7 @@ class requestHandler(BaseHTTPRequestHandler):
     
     def do_GET(self):
         global uiDict
-        if self.path.endswith('/ui'):
+        if self.path.endswith('/'):
             self.send_response(200)
             self.end_headers()
             connection = mysql.connector.connect(host=HOST_IP,
