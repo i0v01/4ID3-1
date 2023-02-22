@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQLParser", "MySQLParser\MySQLParser.csproj", "{B93BBB45-3966-4FF1-9619-8AE1C2D28F8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B93BBB45-3966-4FF1-9619-8AE1C2D28F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93BBB45-3966-4FF1-9619-8AE1C2D28F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93BBB45-3966-4FF1-9619-8AE1C2D28F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93BBB45-3966-4FF1-9619-8AE1C2D28F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0466F5C0-7CF9-47E6-AE02-57581C12B531}
+	EndGlobalSection
+EndGlobal
