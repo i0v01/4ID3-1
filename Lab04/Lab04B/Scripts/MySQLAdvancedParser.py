@@ -22,15 +22,17 @@ PORT = 3000
 
 
 class ServerHandler(http.server.SimpleHTTPRequestHandler):
-
+    #   Serve get requests
     def do_GET(self):
         logging.error(self.headers)
-        
+        #   If base route, serve this page
         if self.path.endswith(''):
+            #   Error code of 200 means that it was processed correctly
             self.send_response(200)
+            #   Finished settings, now go to the HTML document
             self.end_headers()
         
-            
+            #   Start concatenating together an HTML/CSS document
             out = """
                 <style rel="stylesheet" type="text/css" media="screen">
                 html {
@@ -127,16 +129,15 @@ class ServerHandler(http.server.SimpleHTTPRequestHandler):
         if self.path.endswith('/data'):
             self.send_response(200)
             self.end_headers()
+            #   Parse all the data that was submitted by the HTML form
             form = cgi.FieldStorage(
                 fp=self.rfile,
                 headers=self.headers,
                 environ={'REQUEST_METHOD':'POST',
                          'CONTENT_TYPE':self.headers['Content-Type'],
                          })
-
-            postVals = dict()
-
-            
+            #   Convert the submitted data to a python dictionary
+            postVals = dict()            
             for key in form.keys():
                 postVals[key] =  form.getvalue(str(key))             
             
@@ -160,7 +161,7 @@ class ServerHandler(http.server.SimpleHTTPRequestHandler):
                                             password=postVals["dbpass"],
                                             database=postVals["dbname"])
                 print("Conn")
-                
+                #   Concatenate together a MySQL query
                 cursor = connection.cursor()  
                 print('cursor')
                 query = str(f"SELECT * FROM `{ifExists('dbname')}`.`{ifExists('dbtable')}` WHERE `{ifExists('dbtable')}`.`{ifExists('filters')}` {ifExists('comparison')} {ifExists('val')} ORDER BY `id` {ifExists('order')};") # ORDER BY `{ifExists('tbtable')}`.`iddata` {ifExists('order')} ; ")
@@ -172,7 +173,7 @@ class ServerHandler(http.server.SimpleHTTPRequestHandler):
                 print(table)
                 cursor.close()
                 connection.close()
-                
+                #   Format the HTML document to serve back to the user
                 out += "<table style='border: 1px solid black;'> "
                 for row in table:
                     out += "<tr> "
@@ -190,7 +191,7 @@ class ServerHandler(http.server.SimpleHTTPRequestHandler):
             
             
             
-
+            #   Serve your HTML/CSS document to the user
             self.wfile.write(f"""
                     <html>
                     <body style="padding-left: 100px;">

@@ -31,8 +31,10 @@ class requestHandler(BaseHTTPRequestHandler):
                                             database=GROUP_NAME)
             try:
                 cursor = connection.cursor()  
+                #   Query data from the database, based on your database and table name
                 cursor.execute(f"""SELECT * FROM `{GROUP_NAME}`.`{DEVICE_ID}` WHERE `{DEVICE_ID}`.`id` < 40 ORDER BY `{DEVICE_ID}`.`id` DESC; """)
                 table = cursor.fetchall()
+                #   Concatenate together an HTML/CSS document
                 out = """
                     <style rel="stylesheet" type="text/css" media="screen">
                     html {
@@ -77,6 +79,7 @@ class requestHandler(BaseHTTPRequestHandler):
             except Error as e:
                 print(f"DB Query Error", e)
 
+            #   Serve the document to the user
             self.wfile.write(f"""
                     <html>
                     <body style="padding-left: 100px;">
