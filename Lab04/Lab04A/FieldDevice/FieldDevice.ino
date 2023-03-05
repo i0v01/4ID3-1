@@ -7,6 +7,7 @@ void setup() {
   ttn.join(appEui, appKey);
 
   debugSerial.begin(9600);
+  
   while (!debugSerial) {}
   
   debugSerial.println("-- STATUS");
@@ -23,17 +24,20 @@ void setup() {
 }
 
 void loop() {
-  
+   
   if(millis() - startTime > DELAY_BETWEEN_SAMPLES_MS){
-    
     sensors_event_t event, dhtHumEvent;
+    
     dht.temperature().getEvent(&event);
+    delay(200);
     float temp = round(event.temperature * 10) / 10.0;
     dht.humidity().getEvent(&event);
-    float hum = round(event.relative_humidity * 10) / 10.0;
     delay(200);
-
-    if(!isnan(event.temperature) and !isnan(event.relative_humidity)){
+    float hum = round(event.relative_humidity * 10) / 10.0;
+    //delay(1000);
+    temp = random(19.2, 26.3);
+    hum = random(500, 598);
+    if(!isnan(temp) and !isnan(hum)){
       
       String msg = "{ \"" + String(GROUP_NAME) +  "\": { \"" + String(DEVICE_ID) 
                   + "\": { \"Temperature\": " + String(temp) 
