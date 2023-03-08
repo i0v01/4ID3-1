@@ -14,7 +14,7 @@ from datetime import datetime
 #   Database Connection
 HOST_IP = "localhost"
 USER = "root"
-PASSWORD = "9055259140"
+PASSWORD = "fireball"
 
 #   MQTT Connection
 MQTT_IP = 'test.mosquitto.org'
@@ -37,7 +37,7 @@ IO_SAMPLING_RATE = 5  # 5 seconds.
 #       CONNECTIONS
 #------------------------------------
 
-#   IO initialization data structure
+#   IO initialization
 io = dict({
     "UserButton": {
         "IO": IOLine.DIO4_AD4,
