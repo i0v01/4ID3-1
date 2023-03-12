@@ -1,6 +1,6 @@
 HOST_IP = "localhost"
 USER = "root"
-PASSWORD = "fireball"
+PASSWORD = "9055259140"
 GROUP_NAME = "GroupA"
 DEVICE_ID = "DeviceA"
 

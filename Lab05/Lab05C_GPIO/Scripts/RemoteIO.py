@@ -14,7 +14,7 @@ from datetime import datetime
 #   Database Connection
 HOST_IP = "localhost"
 USER = "root"
-PASSWORD = "fireball"
+PASSWORD = "9055259140"
 
 #   MQTT Connection
 MQTT_IP = 'test.mosquitto.org'
@@ -23,7 +23,7 @@ GROUP_NAME = "GroupA"
 DEVICE_ID = "DeviceA"
 
 #   Device Connection
-PORT = "COM7"
+PORT = "COM12"
 BAUD_RATE = 9600
 REMOTE_NODE_ID = "ROUTER"
 IO_SAMPLING_RATE = 5  # 5 seconds.
